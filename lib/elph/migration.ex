@@ -22,15 +22,15 @@ defmodule Elph.Migration do
 
   defmacro add_media_fields do
     quote do
-      add(:mime, :string, null: false)
-      add(:filesize, :integer, null: false)
-      add(:hash, :string, null: false)
-      add(:filename, :string, null: false)
-      add(:extension, :string, null: false)
-      add(:title, :string, default: "", null: false)
-      add(:alt, :string, default: "", null: false)
-      add(:subtext, :string, default: "", null: false)
-      add(:copyright, :string, default: "", null: false)
+      add_if_not_exists(:mime, :string, null: false)
+      add_if_not_exists(:filesize, :integer, null: false)
+      add_if_not_exists(:hash, :string, null: false)
+      add_if_not_exists(:filename, :string, null: false)
+      add_if_not_exists(:extension, :string, null: false)
+      add_if_not_exists(:title, :string, default: "", null: false)
+      add_if_not_exists(:alt, :string, default: "", null: false)
+      add_if_not_exists(:subtext, :string, default: "", null: false)
+      add_if_not_exists(:copyright, :string, default: "", null: false)
     end
   end
 
