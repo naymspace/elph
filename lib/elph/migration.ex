@@ -9,9 +9,9 @@ defmodule Elph.Migration do
   - Add `use Elph.Migration` below `use Ecto.Migration`
   - In the `create table` call add `add_content_field()` and remove the `timestamps()`.
   """
-  defmacro add_content_field do
+  defmacro add_content_field(alter \\ false) do
     quote do
-      add(
+      add_or_alter(unquote(alter),
         :content_id,
         references(:contents, on_delete: :delete_all),
         null: false,
@@ -20,23 +20,41 @@ defmodule Elph.Migration do
     end
   end
 
-  defmacro add_media_fields do
+  defmacro add_media_fields(alter \\ false) do
     quote do
-      add_if_not_exists(:mime, :string, null: false)
-      add_if_not_exists(:filesize, :integer, null: false)
-      add_if_not_exists(:hash, :string, null: false)
-      add_if_not_exists(:filename, :string, null: false)
-      add_if_not_exists(:extension, :string, null: false)
-      add_if_not_exists(:title, :string, default: "", null: false)
-      add_if_not_exists(:alt, :string, default: "", null: false)
-      add_if_not_exists(:subtext, :string, default: "", null: false)
-      add_if_not_exists(:copyright, :string, default: "", null: false)
+      add_or_alter(unquote(alter), :mime, :string, null: false)
+      add_or_alter(unquote(alter), :filesize, :integer, null: false)
+      add_or_alter(unquote(alter), :hash, :string, null: false)
+      add_or_alter(unquote(alter), :filename, :string, null: false)
+      add_or_alter(unquote(alter), :extension, :string, null: false)
+      add_or_alter(unquote(alter), :title, :string, default: "", null: false)
+      add_or_alter(unquote(alter), :alt, :string, default: "", null: false)
+      add_or_alter(unquote(alter), :subtext, :string, default: "", null: false)
+      add_or_alter(unquote(alter), :copyright, :string, default: "", null: false)
+    end
+  end
+
+  defmacro add_or_alter(alter, name, type, keywords) do
+    add_fn = if alter do
+      :add_if_not_exists
+      else
+      :add
+    end
+
+    quote do
+      apply(Ecto.Migration, unquote(add_fn),
+        [
+          unquote(name),
+          unquote(type),
+          [unquote(keywords)]
+        ]
+      )
     end
   end
 
   defmacro __using__(_opts) do
     quote do
-      import unquote(__MODULE__), only: [add_content_field: 0, add_media_fields: 0]
+      import unquote(__MODULE__)
     end
   end
 end
