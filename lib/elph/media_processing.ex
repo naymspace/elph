@@ -49,7 +49,7 @@ defmodule Elph.MediaProcessing do
   end
 
   @doc """
-  Returns the hash of the file. By default it's a full :sha with length 40.
+  Returns the hash of the file as base64. By default it's a full :sha with length 40.
   You can change the :hash or the :length via opts
   """
   def get_file_hash(path, opts \\ []) do

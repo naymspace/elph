@@ -10,7 +10,7 @@ defmodule Elph.Contents.Types do
   - The view which will be called to render the result.
     - It needs a `def render("markdown.json", %{content: content}) do` function.
     - Care! Use `<name>.json` as first param.
-    - Alternatively you can use `nil` if you dont need to render any custom fields
+    - Alternatively you can use `nil` if you dont need to render any type-specific fields
 
   The `use`ing file also has to be added to your config, to activate your custom types:
   `config :elph, types: <YourApp>.Contents.Types`
