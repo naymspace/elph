@@ -16,6 +16,8 @@ defmodule ElphWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  def repo, do: Application.get_env(:elph, :repo)
+
   using do
     quote do
       # Import conveniences for testing with connections
@@ -29,10 +31,10 @@ defmodule ElphWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Sandbox.checkout(Elph.Test.Repo)
+    :ok = Sandbox.checkout(repo())
 
     unless tags[:async] do
-      Sandbox.mode(Elph.Test.Repo, {:shared, self()})
+      Sandbox.mode(repo(), {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
