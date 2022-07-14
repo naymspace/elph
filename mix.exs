@@ -4,12 +4,14 @@ defmodule Elph.MixProject do
   def project do
     [
       app: :elph,
-      version: "0.1.0",
+      version: "0.9.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
+      description: description(),
+      package: package(),
       deps: deps()
     ]
   end
@@ -17,6 +19,23 @@ defmodule Elph.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp description do
+    """
+    A simple and customizable content management system.
+    """
+  end
+
+  defp package do
+    [
+      maintainers: ["Naymspace"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/naymspace/elph",
+        "Docs" => "https://hexdocs.pm/elph/"
+      }
+    ]
+  end
 
   # Specifies your project dependencies.
   #
@@ -30,9 +49,9 @@ defmodule Elph.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:myxql, ">= 0.0.0", only: [:test]},
+      {:ffmpex, "~> 0.7.0"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:ffmpex, "~> 0.7.0"}
+      {:myxql, ">= 0.0.0", only: :test}
     ]
   end
 
