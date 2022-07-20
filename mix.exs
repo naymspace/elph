@@ -16,7 +16,8 @@ defmodule Elph.MixProject do
       preferred_cli_env: [
         test: :test,
         "test.setup": :test
-      ]
+      ],
+      test_coverage: [summary: [threshold: 0]]
     ]
   end
 
