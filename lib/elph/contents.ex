@@ -139,8 +139,8 @@ defmodule Elph.Contents do
 
         subtype_changeset =
           subtype_module.__struct__
-          |> (&apply(subtype_module, :create_changeset, [&1, Map.from_struct(media)])).()
-          |> (&apply(subtype_module, :create_thumbnails, [&1])).()
+          |> (&subtype_module.create_changeset(&1, Map.from_struct(media))).()
+          |> (&subtype_module.create_thumbnails(&1)).()
 
         content_attrs = %{type: Atom.to_string(media.type), shared: true, name: media.name}
 
@@ -255,7 +255,7 @@ defmodule Elph.Contents do
       callbacks().cleanup_callbacks,
       false,
       fn callback, acc ->
-        rerun? = apply(callback, [contents]) == :cleanup
+        rerun? = callback.(contents) == :cleanup
         acc || rerun?
       end
     )
@@ -268,7 +268,7 @@ defmodule Elph.Contents do
       fn content, acc ->
         module = types().get_module(content.type)
 
-        rerun? = apply(module, :after_delete_callback, [content]) == :cleanup
+        rerun? = module.after_delete_callback(content) == :cleanup
         acc || rerun?
       end
     )
