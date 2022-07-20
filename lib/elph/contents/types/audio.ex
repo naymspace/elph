@@ -44,7 +44,7 @@ defmodule Elph.Contents.Types.Audio do
 
     [
       mp3: fn ->
-        with :ok <- MediaProcessing.create_default(path, mp3_path) do
+        with {:ok, _} <- MediaProcessing.create_default(path, mp3_path) do
           {:ok, mp3_path}
         end
       end
