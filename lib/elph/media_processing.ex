@@ -75,7 +75,9 @@ defmodule Elph.MediaProcessing do
   end
 
   def get_extension_mime(extension) do
-    MIME.from_path(extension)
+    extension
+    |> String.trim_leading(".")
+    |> MIME.type()
   end
 
   defp normalize_mime("video/x-m4v"), do: "video/mp4"

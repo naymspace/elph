@@ -34,7 +34,7 @@ defmodule Elph.Contents.Types.Image do
     thumbnail_path = MediaContent.build_file_path(hash, "thumbnail" <> extension)
 
     case MediaProcessing.create_thumbnail_from_image(path, thumbnail_path) do
-      :ok -> put_change(changeset, :thumbnail, "thumbnail" <> extension)
+      {:ok, _} -> put_change(changeset, :thumbnail, "thumbnail" <> extension)
       _ -> add_error(changeset, :thumbnail, "thumbnail could not be created")
     end
   end
