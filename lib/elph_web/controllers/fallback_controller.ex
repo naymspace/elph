@@ -1,11 +1,5 @@
 defmodule ElphWeb.FallbackController do
   @moduledoc false
-
-  @moduledocp """
-  Translates controller action results into valid `Plug.Conn` responses.
-
-  See `Phoenix.Controller.action_fallback/1` for more details.
-  """
   use ElphWeb, :controller
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do

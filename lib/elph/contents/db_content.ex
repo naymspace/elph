@@ -1,16 +1,14 @@
 defmodule Elph.Contents.DbContent do
   @moduledoc false
 
-  @moduledocp """
-  DbContent is the schema that saves real contents in the database.
-  Together with ContentTreePath it represents our closure table.
-
-  The abstract representation for this is the Content.
-
-  This schema has all the attributes shared between all contents.
-  Specific "subclasses" (like ImageContent or GalleryContent) will use
-  DbContent by foreign key relation to this table.
-  """
+  # DbContent is the schema that saves real contents in the database.
+  # Together with ContentTreePath it represents our closure table.
+  #
+  # The abstract representation for this is the Content.
+  #
+  # This schema has all the attributes shared between all contents.
+  # Specific "subclasses" (like ImageContent or GalleryContent) will use
+  # DbContent by foreign key relation to this table.
 
   use Ecto.Schema
 

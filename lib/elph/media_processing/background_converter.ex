@@ -1,11 +1,9 @@
 defmodule Elph.MediaProcessing.BackgroundConverter do
   @moduledoc false
 
-  @moduledocp """
-  BackgroundConverter is a GenServer, that holds a queue of background jobs
-  and distributes them to one `Task` at a time, supervised via a `Task.Supervisor`.
-  This is made not to overwhelm the server with too many conversions at once.
-  """
+  # BackgroundConverter is a GenServer, that holds a queue of background jobs
+  # and distributes them to one `Task` at a time, supervised via a `Task.Supervisor`.
+  # This is made not to overwhelm the server with too many conversions at once.
 
   use GenServer
 
