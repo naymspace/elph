@@ -7,7 +7,6 @@ defmodule ElphWeb do
 
       import Plug.Conn
       import ElphWeb.Gettext
-      alias ElphWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -22,7 +21,6 @@ defmodule ElphWeb do
 
       import ElphWeb.ErrorHelpers
       import ElphWeb.Gettext
-      alias ElphWeb.Router.Helpers, as: Routes
     end
   end
 
