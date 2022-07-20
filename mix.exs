@@ -5,14 +5,18 @@ defmodule Elph.MixProject do
     [
       app: :elph,
       version: "0.9.0",
-      elixir: "~> 1.5",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      preferred_cli_env: [
+        test: :test,
+        "test.setup": :test
+      ]
     ]
   end
 
@@ -51,6 +55,7 @@ defmodule Elph.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ffmpex, "~> 0.10.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
       {:myxql, ">= 0.0.0", only: :test}
     ]
   end
@@ -63,9 +68,10 @@ defmodule Elph.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
+      "ecto.seed": ["run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      "test.setup": ["ecto.drop", "ecto.create --quiet", "ecto.migrate"]
     ]
   end
 end

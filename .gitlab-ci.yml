@@ -23,6 +23,8 @@ build dev:
   stage: test
   environment:
     name: test/$CI_COMMIT_REF_NAME
+  before_script:
+    - cd /app
 
 .with_services: &with_services
   variables:
@@ -47,6 +49,7 @@ spec:
 lint:
   <<: *test
   script: mix credo
-  before_script:
-    - cd /app
-  script: mix credo --strict
+
+audit:
+  <<: *test
+  script: mix deps.audit
