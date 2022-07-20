@@ -1,6 +1,7 @@
 defmodule Elph.Contents do
   @moduledoc """
-  The Contents context.
+  The Contents context. This is the main module of the elph library. It provides functions to
+  work with contents.
   """
 
   import Ecto.Query, warn: false
@@ -88,7 +89,7 @@ defmodule Elph.Contents do
 
   @doc """
   Creates and updates a content-tree.
-  Contents with id are gonna be updated, contents without are treated as new
+  Contents with an id will be updated, contents without an id are treated as new
 
   ## TODO: Examples
 
@@ -235,6 +236,10 @@ defmodule Elph.Contents do
     end
   end
 
+  @doc """
+  Contents that aren't `shared` and have no ancestor that is `shared` are not being used anymore.
+  This function deletes them from the database.
+  """
   def cleanup_orphaned_contents do
     delete_orphaned_contents()
     |> cleanup_after_deleted_contents()
@@ -279,6 +284,10 @@ defmodule Elph.Contents do
     deleted_contents
   end
 
+  @doc """
+  This function sets all contents with tht given ids to `shared: false`. This is faster then cleaning
+  them up manually. They will then be garbage collected in the near future.
+  """
   def unshare_contents(ids) do
     query =
       from(c in DbContent,
@@ -288,10 +297,18 @@ defmodule Elph.Contents do
     unshare(query)
   end
 
+  @doc """
+  This function sets all contents found within the given queryable to `shared: false`. This is faster
+  then cleaning them up manually. They will then be garbage collected in the near future.
+  """
   def unshare(queryable) do
     repo().update_all(queryable, set: [shared: false])
   end
 
+  @doc """
+  Calls a function for the given content tree. If the function returns a content with children, the function
+  will also be called for all the children.
+  """
   def map(content, func) do
     new_content = func.(content)
 

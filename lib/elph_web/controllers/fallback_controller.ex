@@ -1,5 +1,7 @@
 defmodule ElphWeb.FallbackController do
-  @moduledoc """
+  @moduledoc false
+
+  @moduledocp """
   Translates controller action results into valid `Plug.Conn` responses.
 
   See `Phoenix.Controller.action_fallback/1` for more details.

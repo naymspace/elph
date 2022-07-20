@@ -1,5 +1,6 @@
 defmodule ElphWeb.ErrorHelpers do
-  @moduledoc """
+  @moduledoc false
+  @moduledocp """
   Conveniences for translating and building error messages.
   """
 

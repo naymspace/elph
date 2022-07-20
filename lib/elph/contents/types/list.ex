@@ -1,6 +1,6 @@
-defmodule Elph.Contents.Types.ListContainer do
+defmodule Elph.Contents.Types.List do
   @moduledoc """
-  ListContainers are the simplest of containers usable in elph. They don't have
+  Lists are the simplest of containers usable in elph. They don't have
   any more parameters then their children.
   """
   use Ecto.Schema
@@ -8,7 +8,7 @@ defmodule Elph.Contents.Types.ListContainer do
 
   import Ecto.Changeset
 
-  content_schema "list_container_contents" do
+  content_schema "list_contents" do
   end
 
   @doc false

@@ -2,7 +2,7 @@ defmodule Elph.Contents.Types.Image do
   @moduledoc """
   This module is for saving image-files as contents. The changeset is only for
   updating image-files - that's why there is a requirement for the id.
-  Creating a image-file is handled by the Media-Context.
+  Creating an image-file is handled by the Media-Context.
   """
   use Ecto.Schema
   use Elph.Contents.ContentType

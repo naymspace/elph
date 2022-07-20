@@ -1,5 +1,7 @@
 defmodule Elph.Contents.ContentTreePath do
-  @moduledoc """
+  @moduledoc false
+
+  @moduledocp """
   ContentTreePath is the schema used in the database to define relations
   between contents. At the base Elph is using the closure table abstraction
   with added functionality.

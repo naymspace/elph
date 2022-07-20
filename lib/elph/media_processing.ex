@@ -1,9 +1,7 @@
 defmodule Elph.MediaProcessing do
   @moduledoc """
-  The Media context.
-  Holds functions for automated editing of media files on the disk.
-  This wraps ImageMagick and ffmpeg into easy to access standardized
-  function calls.
+  The MediaProcessing context. Holds functions for automated editing of media files on the disk.
+  This wraps ffmpeg into easy to access standardized function calls.
   """
 
   import FFmpex

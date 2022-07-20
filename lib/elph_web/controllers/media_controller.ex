@@ -1,4 +1,7 @@
 defmodule ElphWeb.MediaController do
+  @moduledoc """
+  This controller provides the function to upload new media files.
+  """
   use ElphWeb, :controller
 
   alias Elph.Contents

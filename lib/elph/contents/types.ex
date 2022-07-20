@@ -1,8 +1,10 @@
 defmodule Elph.Contents.Types do
   @moduledoc """
   In this file the macros regarding custom types are defined.
+
   To use custom types this module has to be `use`d. Add `elph_types()` to use the default elph
   content types.
+
   For each type add `type(:markdown, <YourApp>.<YourContext>.Markdown, <YourAppWeb>.MarkdownView)`
   with the following params
   - The `name` of your type
@@ -60,7 +62,7 @@ defmodule Elph.Contents.Types do
   end
 
   defmacro elph_types(opts \\ []) do
-    all_types = ~w(markdown list accordion html image video audio)a
+    all_types = ~w(markdown list accordion_row html image video audio)a
     only_types = Keyword.get(opts, :only, all_types)
     except_types = Keyword.get(opts, :except, [])
     types = Enum.reject(only_types, &Enum.member?(except_types, &1))
@@ -76,9 +78,9 @@ defmodule Elph.Contents.Types do
           list()
         end
       end,
-      if Enum.member?(types, :accordion) do
+      if Enum.member?(types, :accordion_row) do
         quote do
-          accordion()
+          accordion_row()
         end
       end,
       if Enum.member?(types, :html) do
@@ -112,13 +114,13 @@ defmodule Elph.Contents.Types do
 
   defmacro list do
     quote do
-      type(:list, Elph.Contents.Types.ListContainer, nil)
+      type(:list, Elph.Contents.Types.List, nil)
     end
   end
 
-  defmacro accordion do
+  defmacro accordion_row do
     quote do
-      type(:accordion, Elph.Contents.Types.AccordionContainer, ElphWeb.ContentView)
+      type(:accordion_row, Elph.Contents.Types.AccordionRow, ElphWeb.ContentView)
     end
   end
 

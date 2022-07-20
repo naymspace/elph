@@ -1,4 +1,8 @@
 defmodule ElphWeb.ContentView do
+  @moduledoc """
+  This module contains views for the default non-media content types as well as some
+  helper functions that take care of content-tree rendering.
+  """
   use ElphWeb, :view
 
   def types, do: Application.get_env(:elph, :types, Elph.Contents.DefaultTypes)
@@ -83,7 +87,7 @@ defmodule ElphWeb.ContentView do
     %{markdown: content.markdown, op: action}
   end
 
-  def render("accordion.json", %{content: content}) do
+  def render("accordion_row.json", %{content: content}) do
     %{
       default_open: content.default_open,
       title: content.title

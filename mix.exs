@@ -57,7 +57,8 @@ defmodule Elph.MixProject do
       {:ffmpex, "~> 0.10.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
-      {:myxql, ">= 0.0.0", only: :test}
+      {:myxql, ">= 0.0.0", only: :test},
+      {:ex_doc, "~> 0.28", only: :dev}
     ]
   end
 

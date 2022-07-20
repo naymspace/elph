@@ -1,5 +1,7 @@
 defmodule Elph.Contents.DbContent do
-  @moduledoc """
+  @moduledoc false
+
+  @moduledocp """
   DbContent is the schema that saves real contents in the database.
   Together with ContentTreePath it represents our closure table.
 
