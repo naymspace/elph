@@ -1,0 +1,52 @@
+# ######
+# BUILD
+# ######
+.build: &build
+  image: docker:git
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build dev:
+  <<: *build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-dev .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-dev
+
+# ######
+# TEST
+# ######
+.test: &test
+  image:
+    name: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA-dev
+    entrypoint: [""]
+  stage: test
+  environment:
+    name: test/$CI_COMMIT_REF_NAME
+
+.with_services: &with_services
+  variables:
+    MYSQL_ROOT_PASSWORD: mysql
+  variables:
+    DATABASE_URL: mysql://mysql:mysql@mariadb:3306/elph_test
+    MYSQL_ROOT_PASSWORD: mysql
+    MYSQL_USER: mysql
+    MYSQL_PASSWORD: mysql
+    MYSQL_DATABASE: elph_test
+  services:
+    - mariadb:10.4
+
+spec:
+  <<: *test
+  <<: *with_services
+  before_script:
+    - cd /app
+    - mix ecto.setup
+  script: mix test --cover
+
+lint:
+  <<: *test
+  script: mix credo
+  before_script:
+    - cd /app
+  script: mix credo --strict
