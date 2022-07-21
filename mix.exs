@@ -23,15 +23,14 @@ defmodule Elph.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.3"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.0"},
+      {:phoenix, "~> 1.5.4"},
+      {:phoenix_ecto, "~> 4.1"},
+      {:ecto_sql, "~> 3.4"},
       {:file_info, "~> 0.0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:myxql, "~> 0.2.0", only: [:test]},
+      {:myxql, ">= 0.0.0", only: [:test]},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:ffmpex, "~> 0.7.0"}
     ]

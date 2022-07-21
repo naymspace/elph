@@ -19,9 +19,4 @@ defmodule ElphWeb.FallbackController do
     |> put_view(ElphWeb.ErrorView)
     |> render(:"404")
   end
-
-  def call(conn, bla) do
-    IO.puts("SUPERFALLBACK:")
-    IO.puts(inspect(bla))
-  end
 end
