@@ -1,9 +1,7 @@
 defmodule Elph.MediaProcessing do
   @moduledoc """
-  The Media context.
-  Holds functions for automated editing of media files on the disk.
-  This wraps ImageMagick and ffmpeg into easy to access standardized
-  function calls.
+  The MediaProcessing context. Holds functions for automated editing of media files on the disk.
+  This wraps ffmpeg into easy to access standardized function calls.
   """
 
   import FFmpex
@@ -49,7 +47,7 @@ defmodule Elph.MediaProcessing do
   end
 
   @doc """
-  Returns the hash of the file. By default it's a full :sha with length 40.
+  Returns the hash of the file as base64. By default it's a full :sha with length 40.
   You can change the :hash or the :length via opts
   """
   def get_file_hash(path, opts \\ []) do
@@ -75,7 +73,9 @@ defmodule Elph.MediaProcessing do
   end
 
   def get_extension_mime(extension) do
-    MIME.from_path(extension)
+    extension
+    |> String.trim_leading(".")
+    |> MIME.type()
   end
 
   defp normalize_mime("video/x-m4v"), do: "video/mp4"

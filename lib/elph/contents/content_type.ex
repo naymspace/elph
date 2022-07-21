@@ -11,13 +11,6 @@ defmodule Elph.Contents.ContentType do
   - Remove the `timestamps()` call in your schema as Elph already manages timestamps.
   - Write your `changeset` as you would usually and only care about your own stuff. Don't embed or cast the content. This is already handled.
     - Care! The function has to be called `changeset` so it can be called by Elph
-  - Add a `select_merge(query)` function. Use this code as reference and add your fields in the map in the end.
-  ```
-  def select_merge(query) do
-    require Ecto.Query
-    Ecto.Query.select_merge(query, [..., m], %{markdown: m.markdown})
-  end
-  ```
   """
 
   @callback changeset(term, term) :: term

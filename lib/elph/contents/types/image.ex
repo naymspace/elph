@@ -2,7 +2,7 @@ defmodule Elph.Contents.Types.Image do
   @moduledoc """
   This module is for saving image-files as contents. The changeset is only for
   updating image-files - that's why there is a requirement for the id.
-  Creating a image-file is handled by the Media-Context.
+  Creating an image-file is handled by the Media-Context.
   """
   use Ecto.Schema
   use Elph.Contents.ContentType
@@ -33,11 +33,9 @@ defmodule Elph.Contents.Types.Image do
     path = MediaContent.build_default_file_path(hash, extension)
     thumbnail_path = MediaContent.build_file_path(hash, "thumbnail" <> extension)
 
-    with :ok <- MediaProcessing.create_thumbnail_from_image(path, thumbnail_path) do
-      put_change(changeset, :thumbnail, "thumbnail" <> extension)
-    else
-      _ ->
-        add_error(changeset, :thumbnail, "thumbnail could not be created")
+    case MediaProcessing.create_thumbnail_from_image(path, thumbnail_path) do
+      {:ok, _} -> put_change(changeset, :thumbnail, "thumbnail" <> extension)
+      _ -> add_error(changeset, :thumbnail, "thumbnail could not be created")
     end
   end
 end

@@ -1,14 +1,14 @@
 defmodule Elph.Contents.DbContent do
-  @moduledoc """
-  DbContent is the schema that saves real contents in the database.
-  Together with ContentTreePath it represents our closure table.
+  @moduledoc false
 
-  The abstract representation for this is the Content.
-
-  This schema has all the attributes shared between all contents.
-  Specific "subclasses" (like ImageContent or GalleryContent) will use
-  DbContent by foreign key relation to this table.
-  """
+  # DbContent is the schema that saves real contents in the database.
+  # Together with ContentTreePath it represents our closure table.
+  #
+  # The abstract representation for this is the Content.
+  #
+  # This schema has all the attributes shared between all contents.
+  # Specific "subclasses" (like ImageContent or GalleryContent) will use
+  # DbContent by foreign key relation to this table.
 
   use Ecto.Schema
 
@@ -52,7 +52,7 @@ defmodule Elph.Contents.DbContent do
       from(p in ContentTreePath,
         where: p.descendant_id == ^id,
         where: not (p.ancestor_id == ^id),
-        where: not (p.ancestor_id in ^notin),
+        where: p.ancestor_id not in ^notin,
         select: p.ancestor_id
       )
 
@@ -296,8 +296,8 @@ defmodule Elph.Contents.DbContent do
     module = types().get_module(subtype)
     query = from(s in module, where: s.id in ^ids)
 
-    preloads = apply(module, :preloads, [action])
-    content_preloads = apply(module, :content_preloads, [action])
+    preloads = module.preloads(action)
+    content_preloads = module.content_preloads(action)
 
     query
     |> repo().all()

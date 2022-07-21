@@ -1,4 +1,8 @@
 defmodule ElphWeb.MediaView do
+  @moduledoc """
+  This module contains views and helper functions for rendering of media content types.
+  """
+
   use ElphWeb, :view
 
   defp url_upload_dir do

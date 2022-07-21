@@ -1,6 +1,7 @@
 defmodule Elph.Contents.Callbacks do
   @moduledoc """
-  In this file the macros regarding custom callbacks are defined.
+  In this file macros regarding custom callbacks are defined.
+
   To use custom callbacks this module has to be `use`d. Add `elph_cleanup_callbacks()` to use the
   default elph callbacks.
 

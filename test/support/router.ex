@@ -1,4 +1,9 @@
 defmodule ElphWeb.Router do
+  @moduledoc false
+
+  # DEPRECATED
+  # This module is only here for the controller-tests to work.
+
   use ElphWeb, :router
 
   pipeline :api do

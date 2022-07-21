@@ -1,4 +1,7 @@
 defmodule ElphWeb.ContentController do
+  @moduledoc """
+  This controller holds the basic functions of elph. Manipulation of contents.
+  """
   use ElphWeb, :controller
 
   alias Elph.Contents

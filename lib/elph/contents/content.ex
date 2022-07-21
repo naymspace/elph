@@ -67,7 +67,7 @@ defmodule Elph.Contents.Content do
                 repo().get!(module, id)
             end
 
-          case subtype_changeset = apply(module, :changeset, [struct, attrs]) do
+          case subtype_changeset = module.changeset(struct, attrs) do
             %{valid?: true} ->
               subtype_changeset_map = Map.from_struct(subtype_changeset)
               put_change(changeset, :subtype_changeset_map, subtype_changeset_map)

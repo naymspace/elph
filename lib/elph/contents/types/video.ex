@@ -37,8 +37,8 @@ defmodule Elph.Contents.Types.Video do
     thumbnail_path = MediaContent.build_file_path(hash, "thumbnail.png")
     poster_path = MediaContent.build_file_path(hash, "poster.png")
 
-    with :ok <- MediaProcessing.create_poster_from_video(path, poster_path),
-         :ok <- MediaProcessing.create_thumbnail_from_image(poster_path, thumbnail_path) do
+    with {:ok, _} <- MediaProcessing.create_poster_from_video(path, poster_path),
+         {:ok, _} <- MediaProcessing.create_thumbnail_from_image(poster_path, thumbnail_path) do
       changeset
       |> put_change(:thumbnail, "thumbnail.png")
       |> put_change(:poster, "poster.png")
@@ -54,7 +54,7 @@ defmodule Elph.Contents.Types.Video do
 
     [
       mp4: fn ->
-        with :ok <- MediaProcessing.create_default(path, mp4_path) do
+        with {:ok, _} <- MediaProcessing.create_default(path, mp4_path) do
           {:ok, mp4_path}
         end
       end

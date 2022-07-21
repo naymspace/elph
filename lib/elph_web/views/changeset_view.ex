@@ -1,6 +1,8 @@
 defmodule ElphWeb.ChangesetView do
   use ElphWeb, :view
 
+  @moduledoc false
+
   @doc """
   Traverses and translates changeset errors.
 

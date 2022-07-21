@@ -1,21 +1,5 @@
 defmodule ElphWeb do
-  @moduledoc """
-  The entrypoint for defining your web interface, such
-  as controllers, views, channels and so on.
-
-  This can be used in your application as:
-
-      use ElphWeb, :controller
-      use ElphWeb, :view
-
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
-
-  Do NOT define functions inside the quoted expressions
-  below. Instead, define any helper function in modules
-  and import those modules here.
-  """
+  @moduledoc false
 
   def controller do
     quote do
@@ -23,7 +7,6 @@ defmodule ElphWeb do
 
       import Plug.Conn
       import ElphWeb.Gettext
-      alias ElphWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -38,7 +21,6 @@ defmodule ElphWeb do
 
       import ElphWeb.ErrorHelpers
       import ElphWeb.Gettext
-      alias ElphWeb.Router.Helpers, as: Routes
     end
   end
 

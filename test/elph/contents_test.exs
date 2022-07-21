@@ -158,8 +158,7 @@ defmodule Elph.ContentsTest do
       good_contents =
         content
         |> flatten_content_tree()
-        |> Enum.filter(& &1.shared)
-        |> Enum.filter(&(&1.type == :markdown || &1.type == :html))
+        |> Enum.filter(&(&1.shared && (&1.type == :markdown || &1.type == :html)))
 
       assert good_contents == Contents.list_contents(show_all: false, type: [:markdown, :html])
     end

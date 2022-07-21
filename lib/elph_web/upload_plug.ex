@@ -6,7 +6,7 @@ defmodule ElphWeb.UploadPlug do
     Plug.Static.init(
       at: Application.get_env(:elph, :url_upload_dir),
       from: Application.get_env(:elph, :upload_dir),
-      gzip: false
+      gzip: true
     )
   end
 

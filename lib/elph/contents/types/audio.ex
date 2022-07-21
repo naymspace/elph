@@ -2,7 +2,7 @@ defmodule Elph.Contents.Types.Audio do
   @moduledoc """
   This module is for saving audio-files as contents. The changeset is only for
   updating audio-files - that's why there is a requirement for the id.
-  Creating a audio-file is handled by the Media-Context.
+  Creating an audio-file is handled by the Media-Context.
   """
   use Ecto.Schema
   use Elph.Contents.ContentType
@@ -10,7 +10,7 @@ defmodule Elph.Contents.Types.Audio do
 
   alias Elph.Contents
   alias Elph.Contents.MediaContent
-  alias Elph.Contents.Types.ListContainer
+  alias Elph.Contents.Types.List
   alias Elph.MediaProcessing
 
   import Ecto.Changeset
@@ -20,7 +20,7 @@ defmodule Elph.Contents.Types.Audio do
     media_fields()
     field :mp3, :string
     field :mp3_conversion, :boolean, default: true
-    belongs_to(:transcript, ListContainer)
+    belongs_to(:transcript, List)
   end
 
   @doc false
@@ -44,7 +44,7 @@ defmodule Elph.Contents.Types.Audio do
 
     [
       mp3: fn ->
-        with :ok <- MediaProcessing.create_default(path, mp3_path) do
+        with {:ok, _} <- MediaProcessing.create_default(path, mp3_path) do
           {:ok, mp3_path}
         end
       end
