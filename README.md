@@ -14,7 +14,7 @@ Just plug it into your existing phoenix app, add some configs, run migrations an
 
 ## Usage
 
-- Add `{:elph, git: "https://github.com/naymspace/elph.git", tag: "v0.7"}` to your `mix.exs` under `deps`
+- Add `{:elph, git: "https://github.com/naymspace/elph.git", tag: "v0.8"}` to your `mix.exs` under `deps`
 - Run `mix deps.get` to fetch it.
 - Add the following to your `config.exs`
 ```
