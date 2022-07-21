@@ -17,7 +17,8 @@ defmodule Elph.MixProject do
         test: :test,
         "test.setup": :test
       ],
-      test_coverage: [summary: [threshold: 0]]
+      test_coverage: [summary: [threshold: 0]],
+      source_url: "https://github.com/naymspace/elph"
     ]
   end
 
@@ -27,7 +28,8 @@ defmodule Elph.MixProject do
 
   defp description do
     """
-    A simple and customizable content management system.
+    A modular and easily customizable content management library that gives you pretty
+    much everything you need for your basic phoenix project in terms of content-management.
     """
   end
 
