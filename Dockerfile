@@ -1,7 +1,7 @@
 # Extend from the official Elixir image
 FROM hexpm/elixir:1.13.4-erlang-24.3.4.2-alpine-3.16.0
 
-RUN apk --no-cache add mariadb-client bash inotify-tools build-base git
+RUN apk --no-cache add mariadb-client bash inotify-tools build-base git ffmpeg
 
 # prepare workdir
 WORKDIR /app
