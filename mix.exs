@@ -4,7 +4,7 @@ defmodule Elph.MixProject do
   def project do
     [
       app: :elph,
-      version: "0.9.0",
+      version: "0.9.1",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
